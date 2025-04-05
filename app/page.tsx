@@ -1,103 +1,177 @@
+"use client";
+
+import type React from "react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ArrowRight,
+  BookOpen,
+  Briefcase,
+  Users,
+  MessageSquare,
+  Award,
+} from "lucide-react";
+import Link from "next/link";
+import { MotionDiv } from "@/components/motion-div";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="  mx-auto px-4 py-8">
+      {/* Hero Section */}
+      <section className="py-12 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              Empowering Youth with Skills and Opportunities
+            </h1>
+            <p className="text-muted-foreground md:text-xl">
+              RiseUp connects young talent with the skills, mentorship, and job
+              opportunities they need to succeed in today&apos;s competitive
+              market.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button asChild size="lg">
+                <Link href="/login">Get Started</Link>
+              </Button>
+              <Button variant="outline" size="lg">
+                <Link href="/learning">Explore Courses</Link>
+              </Button>
+            </div>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative h-[350px] lg:h-[500px] rounded-lg overflow-hidden"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/hero.jpg"
+              alt="Youth empowerment"
+              className="object-cover w-full h-full"
+              width={500}
+              height={500}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </MotionDiv>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      {/* Key Features Section */}
+      <section className="py-12 md:py-20">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            Key Features
+          </h2>
+          <p className="mt-4 text-muted-foreground md:text-xl max-w-3xl mx-auto">
+            Everything you need to develop your skills and advance your career
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <FeatureCard
+            icon={<BookOpen className="h-10 w-10" />}
+            title="Personalized Learning"
+            description="Access courses tailored to your interests and career goals"
+            delay={0.1}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <FeatureCard
+            icon={<Briefcase className="h-10 w-10" />}
+            title="Job Opportunities"
+            description="Connect with employers looking for your specific skills"
+            delay={0.2}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard
+            icon={<Users className="h-10 w-10" />}
+            title="Mentorship"
+            description="Learn from industry professionals who guide your development"
+            delay={0.3}
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <FeatureCard
+            icon={<MessageSquare className="h-10 w-10" />}
+            title="Community Support"
+            description="Join a network of peers to share knowledge and experiences"
+            delay={0.4}
+          />
+          <FeatureCard
+            icon={<Award className="h-10 w-10" />}
+            title="Mock Interviews"
+            description="Practice and prepare for real job interviews"
+            delay={0.5}
+          />
+          <FeatureCard
+            icon={<ArrowRight className="h-10 w-10" />}
+            title="Career Advancement"
+            description="Track your progress and advance toward your career goals"
+            delay={0.6}
+          />
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-12 md:py-20">
+        <div className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+              Ready to Rise Up?
+            </h2>
+            <p className="text-primary-foreground/90 md:text-xl">
+              Join thousands of young people who are developing their skills and
+              finding opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+              <Button variant="secondary" size="lg" asChild>
+                <Link href="/login">Sign Up Now</Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                size="lg"
+              >
+                <Link href="/learning">Browse Courses</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
+  );
+}
+
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  delay: number;
+}
+
+function FeatureCard({ icon, title, description, delay }: FeatureCardProps) {
+  return (
+    <MotionDiv
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay }}
+    >
+      <Card className="h-full">
+        <CardHeader>
+          <div className="text-primary mb-2">{icon}</div>
+          <CardTitle>{title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription className="text-base">{description}</CardDescription>
+        </CardContent>
+      </Card>
+    </MotionDiv>
   );
 }
