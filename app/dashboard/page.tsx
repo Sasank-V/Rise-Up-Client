@@ -17,6 +17,7 @@ import Link from "next/link";
 import { CourseCard } from "@/components/course-card";
 import { JobCard } from "@/components/job-card";
 import { MotionDiv } from "@/components/motion-div";
+import LoadingScreen from "@/components/loading";
 
 // Mock data
 const courses = [
@@ -109,13 +110,13 @@ const upcomingEvents = [
 export default function Dashboard() {
   const { data: session, status } = useSession();
 
-  //   if (status === "loading") {
-  //     return <div className="  py-10">Loading...</div>;
-  //   }
+  if (status === "loading") {
+    return <LoadingScreen />;
+  }
 
-  //   if (status === "unauthenticated") {
-  //     redirect("/login");
-  //   }
+  if (status === "unauthenticated") {
+    redirect("/signin");
+  }
 
   // Assuming role is stored in session
   const userRole = session?.user?.role || "learner";

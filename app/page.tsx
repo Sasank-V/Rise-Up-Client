@@ -44,7 +44,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button asChild size="lg">
-                <Link href="/login">Get Started</Link>
+                <Link href="/signin">Get Started</Link>
               </Button>
               <Button variant="outline" size="lg">
                 <Link href="/learning">Explore Courses</Link>
@@ -132,7 +132,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
               <Button variant="secondary" size="lg" asChild>
-                <Link href="/login">Sign Up Now</Link>
+                <Link href="/signin">Sign Up Now</Link>
               </Button>
               <Button
                 variant="outline"

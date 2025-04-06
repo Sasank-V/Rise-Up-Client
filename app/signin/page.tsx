@@ -12,18 +12,21 @@ import {
 } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { MotionDiv } from "@/components/motion-div";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [role, setRole] = useState<"learner" | "ngo">("learner");
+  const [role, setRole] = useState<"learner" | "mentor" | "organisation">(
+    "learner"
+  );
+  const router = useRouter();
 
   const handleGoogleSignIn = async () => {
-    await signIn("google", {
-      callbackUrl: "/dashboard",
-      redirect: true,
-    });
+    document.cookie = `user-role=${role}; path=/; max-age=300`;
+    signIn("google");
+    router.push("/dashboard");
   };
 
   return (
@@ -35,7 +38,7 @@ export default function LoginPage() {
         className="w-full max-w-md"
       >
         <Card>
-          <CardHeader className="space-y-1">
+          <CardHeader className="space-y-1 text-center">
             <CardTitle className="text-2xl font-bold">
               Sign in to RiseUp
             </CardTitle>
@@ -43,13 +46,17 @@ export default function LoginPage() {
               Choose your role and sign in with your Google account
             </CardDescription>
           </CardHeader>
+
           <CardContent className="space-y-4">
             <RadioGroup
               defaultValue="learner"
               value={role}
-              onValueChange={(value) => setRole(value as "learner" | "ngo")}
-              className="grid grid-cols-2 gap-4"
+              onValueChange={(value) =>
+                setRole(value as "learner" | "mentor" | "organisation")
+              }
+              className="grid grid-cols-1 gap-4"
             >
+              {/* Learner */}
               <div>
                 <RadioGroupItem
                   value="learner"
@@ -66,19 +73,45 @@ export default function LoginPage() {
                   </span>
                 </Label>
               </div>
+
+              {/* Mentor */}
               <div>
-                <RadioGroupItem value="ngo" id="ngo" className="peer sr-only" />
+                <RadioGroupItem
+                  value="mentor"
+                  id="mentor"
+                  className="peer sr-only"
+                />
                 <Label
-                  htmlFor="ngo"
+                  htmlFor="mentor"
                   className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
-                  <span className="text-base font-medium">NGO/Recruiter</span>
+                  <span className="text-base font-medium">Mentor</span>
                   <span className="text-sm text-muted-foreground">
-                    Post jobs and find talent
+                    Guide learners and share knowledge
+                  </span>
+                </Label>
+              </div>
+
+              {/* Organisation */}
+              <div>
+                <RadioGroupItem
+                  value="organisation"
+                  id="organisation"
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor="organisation"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <span className="text-base font-medium">Organisation</span>
+                  <span className="text-sm text-muted-foreground">
+                    Post courses and jobs
                   </span>
                 </Label>
               </div>
             </RadioGroup>
+
+            {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
@@ -89,6 +122,8 @@ export default function LoginPage() {
                 </span>
               </div>
             </div>
+
+            {/* Google Sign In */}
             <Button
               variant="outline"
               className="w-full"
@@ -98,6 +133,7 @@ export default function LoginPage() {
               Google
             </Button>
           </CardContent>
+
           <CardFooter className="flex flex-col">
             <p className="mt-2 text-xs text-center text-muted-foreground">
               By signing in, you agree to our{" "}
