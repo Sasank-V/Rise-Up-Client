@@ -57,7 +57,7 @@ export function CourseCard({ course }: CourseCardProps) {
       </CardContent>
       <CardFooter>
         <Button asChild className="w-full" size="sm">
-          <Link href={`/learning/${course.id}`}>
+          <Link href={`/courses/${course.id}`}>
             <BookOpen className="mr-2 h-4 w-4" />
             {course.progress !== undefined && course.progress > 0
               ? "Continue"

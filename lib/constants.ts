@@ -1,6 +1,6 @@
 export const navigation = [
   { name: "Home", href: "/" },
-  { name: "Learn", href: "/learn" },
+  { name: "Courses", href: "/courses" },
   { name: "Jobs", href: "/jobs" },
   { name: "Mentorship", href: "/mentorship" },
   { name: "Community", href: "/community" },
@@ -8,7 +8,7 @@ export const navigation = [
 
 export const learnerNav = [
   { name: "Dashboard", href: "/dashboard" },
-  { name: "Learn", href: "/learn" },
+  { name: "Courses", href: "/courses" },
   { name: "Practise", href: "/practise" },
   { name: "Jobs", href: "/jobs" },
   { name: "Mentorship", href: "/mentorship" },
@@ -20,11 +20,10 @@ export const mentorNav = [
   { name: "Courses", href: "/courses" },
   { name: "Requests", href: "/requests" },
   { name: "Tests", href: "/tests" },
-  { name: "Mentorship", href: "/mentorship" },
   { name: "Community", href: "/community" },
 ];
 
-export const organisationNav = [
+export const organizationNav = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Courses", href: "/courses" },
   { name: "Jobs", href: "/jobs" },

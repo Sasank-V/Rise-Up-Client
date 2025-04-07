@@ -23,11 +23,11 @@ const courseData = {
   title: "Web Development Fundamentals",
   description:
     "Learn HTML, CSS, and JavaScript basics to build your first website",
-  image: "/placeholder.svg?height=300&width=800",
+  image: "https://picsum.photos/300/800",
   duration: "8 weeks",
   level: "Beginner",
   instructor: "Alex Johnson",
-  instructorImage: "/placeholder.svg?height=100&width=100",
+  instructorImage: "https://picsum.photos/100",
   progress: 65,
   modules: [
     {
@@ -163,7 +163,7 @@ export default function CoursePage({
     <div className="p-5 py-8">
       <div className="mb-6">
         <Link
-          href="/learning"
+          href="/courses"
           className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-sm mb-2"
         >
           <ArrowLeft className="h-4 w-4" /> Back to courses

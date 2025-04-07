@@ -47,7 +47,7 @@ export default function Home() {
                 <Link href="/signin">Get Started</Link>
               </Button>
               <Button variant="outline" size="lg">
-                <Link href="/learning">Explore Courses</Link>
+                <Link href="/courses">Explore Courses</Link>
               </Button>
             </div>
           </MotionDiv>
@@ -139,7 +139,7 @@ export default function Home() {
                 className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                 size="lg"
               >
-                <Link href="/learning">Browse Courses</Link>
+                <Link href="/courses">Browse Courses</Link>
               </Button>
             </div>
           </div>

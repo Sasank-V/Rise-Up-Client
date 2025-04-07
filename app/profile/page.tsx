@@ -73,10 +73,7 @@ export default function ProfilePage() {
               <CardContent className="pt-6">
                 <div className="flex flex-col items-center space-y-4">
                   <Avatar className="h-24 w-24">
-                    <AvatarImage
-                      src="/placeholder.svg?height=96&width=96"
-                      alt="Profile"
-                    />
+                    <AvatarImage src="https://picsum.photos/96" alt="Profile" />
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <div className="text-center">

@@ -15,8 +15,9 @@ import {
   learnerNav,
   mentorNav,
   navigation,
-  organisationNav,
+  organizationNav,
 } from "@/lib/constants";
+import { outfit } from "@/lib/fonts";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,8 +35,8 @@ export function Header() {
           return setNavItems(learnerNav);
         case "mentor":
           return setNavItems(mentorNav);
-        case "organisation":
-          return setNavItems(organisationNav);
+        case "organization":
+          return setNavItems(organizationNav);
         default:
           return setNavItems(navigation);
       }
@@ -149,12 +150,12 @@ export function Header() {
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="pr-0">
+            <SheetContent side="right" className={`pr-0 ${outfit.className}`}>
               <div className="px-7 pt-5">
                 <Link
                   href="/"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-semibold flex gap-2"
+                  className="text-lg font-bold flex gap-2"
                 >
                   <Image src={"/logo.svg"} height={30} width={30} alt="Logo" />
                   RiseUp

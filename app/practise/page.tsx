@@ -183,7 +183,7 @@ export default function InterviewPrepPage() {
 
   return (
     <div className="p-5 py-8">
-      <h1 className="text-3xl font-bold mb-6">Interview Preparation</h1>
+      <h1 className="text-3xl font-bold mb-6">Practise</h1>
 
       <Tabs defaultValue="mock-interviews" className="space-y-6">
         <TabsList className="grid w-full grid-cols-2">

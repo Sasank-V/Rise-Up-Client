@@ -22,7 +22,7 @@ const jobs = [
     type: "Full-time",
     salary: "$40,000 - $55,000",
     posted: "2 days ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 92,
   },
   {
@@ -33,7 +33,7 @@ const jobs = [
     type: "Part-time",
     salary: "$25 - $30/hour",
     posted: "1 week ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 85,
   },
   {
@@ -44,7 +44,7 @@ const jobs = [
     type: "Contract",
     salary: "$20 - $25/hour",
     posted: "3 days ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 78,
   },
   {
@@ -55,7 +55,7 @@ const jobs = [
     type: "Full-time",
     salary: "$38,000 - $45,000",
     posted: "1 day ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 88,
   },
   {
@@ -66,7 +66,7 @@ const jobs = [
     type: "Full-time",
     salary: "$35,000 - $42,000",
     posted: "5 days ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 75,
   },
   {
@@ -77,7 +77,7 @@ const jobs = [
     type: "Internship",
     salary: "$18 - $22/hour",
     posted: "1 week ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
     match: 82,
   },
 ];

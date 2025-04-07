@@ -1,12 +1,9 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { MotionDiv } from "@/components/motion-div";
 import { Loader } from "lucide-react";
 
 const LoadingScreen: React.FC = () => {
-  const { theme } = useTheme();
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
       <MotionDiv

@@ -44,7 +44,7 @@ const mentors = [
     expertise: ["Web Development", "React", "UI/UX"],
     rating: 4.9,
     reviews: 24,
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
     availability: "Available this week",
     bio: "Frontend developer with 8+ years of experience specializing in React and modern JavaScript frameworks. Passionate about mentoring junior developers and helping them grow in their careers.",
   },
@@ -56,7 +56,7 @@ const mentors = [
     expertise: ["Product Strategy", "UX Research", "Agile"],
     rating: 4.7,
     reviews: 18,
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
     availability: "Limited availability",
     bio: "Product manager with experience in both startups and enterprise companies. I help mentees understand product development cycles and how to build user-centric products.",
   },
@@ -68,7 +68,7 @@ const mentors = [
     expertise: ["Machine Learning", "Python", "Data Analysis"],
     rating: 5.0,
     reviews: 31,
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
     availability: "Available this week",
     bio: "Data scientist with a PhD in Computer Science and 5+ years of industry experience. I enjoy helping others learn about data science, machine learning, and AI concepts.",
   },
@@ -80,7 +80,7 @@ const mentors = [
     expertise: ["UI Design", "User Research", "Figma"],
     rating: 4.8,
     reviews: 15,
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
     availability: "Available next week",
     bio: "UX designer focused on creating intuitive and accessible digital experiences. I've worked with startups and Fortune 500 companies to design products used by millions.",
   },
@@ -93,7 +93,7 @@ const myMentors = [
     title: "Senior Frontend Developer",
     company: "TechCorp",
     nextSession: "Tomorrow, 3:00 PM",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
   },
 ];
 
@@ -105,7 +105,7 @@ const mySessions = [
     date: "Tomorrow, 3:00 PM",
     duration: "45 min",
     status: "Upcoming",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
   },
   {
     id: "2",
@@ -114,7 +114,7 @@ const mySessions = [
     date: "Last Week",
     duration: "60 min",
     status: "Completed",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://picsum.photos/100",
   },
 ];
 

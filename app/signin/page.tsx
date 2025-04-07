@@ -18,7 +18,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [role, setRole] = useState<"learner" | "mentor" | "organisation">(
+  const [role, setRole] = useState<"learner" | "mentor" | "organization">(
     "learner"
   );
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function LoginPage() {
               defaultValue="learner"
               value={role}
               onValueChange={(value) =>
-                setRole(value as "learner" | "mentor" | "organisation")
+                setRole(value as "learner" | "mentor" | "organization")
               }
               className="grid grid-cols-1 gap-4"
             >
@@ -92,18 +92,18 @@ export default function LoginPage() {
                 </Label>
               </div>
 
-              {/* Organisation */}
+              {/* organization */}
               <div>
                 <RadioGroupItem
-                  value="organisation"
-                  id="organisation"
+                  value="organization"
+                  id="organization"
                   className="peer sr-only"
                 />
                 <Label
-                  htmlFor="organisation"
+                  htmlFor="organization"
                   className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
-                  <span className="text-base font-medium">Organisation</span>
+                  <span className="text-base font-medium">Organization</span>
                   <span className="text-sm text-muted-foreground">
                     Post courses and jobs
                   </span>

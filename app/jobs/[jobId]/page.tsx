@@ -41,7 +41,7 @@ const jobData = {
   salary: "$40,000 - $55,000",
   posted: "2 days ago",
   deadline: "Dec 31, 2023",
-  logo: "/placeholder.svg?height=100&width=100",
+  logo: "https://picsum.photos/100",
   match: 92,
   description: `
     <p>TechStart Solutions is looking for a motivated Junior Web Developer to join our growing team. This is an excellent opportunity for recent graduates or those early in their career to gain valuable experience in a supportive environment.</p>
@@ -88,7 +88,7 @@ const similarJobs = [
     type: "Internship",
     salary: "$20 - $25/hour",
     posted: "1 week ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
   },
   {
     id: "3",
@@ -98,7 +98,7 @@ const similarJobs = [
     type: "Full-time",
     salary: "$45,000 - $55,000",
     posted: "3 days ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
   },
   {
     id: "4",
@@ -108,7 +108,7 @@ const similarJobs = [
     type: "Part-time",
     salary: "$22 - $28/hour",
     posted: "5 days ago",
-    logo: "/placeholder.svg?height=50&width=50",
+    logo: "https://picsum.photos/50",
   },
 ];
 

@@ -1,12 +1,10 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Providers } from "@/components/providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import { outfit } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "RiseUp - Empowering Youth with Skills and Opportunities",
@@ -23,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
-          <div className="flex min-h-screen flex-col">
+          <div className={`flex min-h-screen flex-col ${outfit.className}`}>
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

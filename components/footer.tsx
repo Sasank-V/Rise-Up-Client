@@ -52,7 +52,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/learning"
+                  href="/courses"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Courses
@@ -84,7 +84,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/interview-prep"
+                  href="/tests"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Interview Prep
