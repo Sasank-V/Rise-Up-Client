@@ -108,12 +108,12 @@ export function Header() {
           {/* Profile + Sign Out / Sign In */}
           {session ? (
             <div className="flex items-center gap-2">
-              <Link href="/profile">
+              <Link href="/profile" className="cursor-pointer">
                 <Button
                   variant="ghost"
                   className="relative h-9 w-9 rounded-full p-0 flex items-center"
                 >
-                  <Avatar className="h-9 w-9">
+                  <Avatar className="h-9 w-9 cursor-pointer">
                     <AvatarImage
                       src={session.user?.image || ""}
                       alt={session.user?.name || ""}
