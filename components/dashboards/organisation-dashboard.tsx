@@ -96,7 +96,7 @@ const topCandidates = [
   },
 ];
 
-export function OrganizationDashboard() {
+export function OrganisationDashboard() {
   const [activeTab, setActiveTab] = useState("jobs");
 
   return (
@@ -330,7 +330,7 @@ export function OrganizationDashboard() {
           </div>
           <div className="flex justify-center">
             <Button asChild variant="outline">
-              <Link href="/organization/candidates">View All Candidates</Link>
+              <Link href="/organisation/candidates">View All Candidates</Link>
             </Button>
           </div>
         </TabsContent>
@@ -424,7 +424,7 @@ export function OrganizationDashboard() {
 
           <div className="flex justify-center">
             <Button asChild>
-              <Link href="/organization/analytics">
+              <Link href="/organisation/analytics">
                 View Detailed Analytics
               </Link>
             </Button>
@@ -543,7 +543,7 @@ export function OrganizationDashboard() {
               </div>
               <div className="pt-2">
                 <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/organization/events">View All Events</Link>
+                  <Link href="/organisation/events">View All Events</Link>
                 </Button>
               </div>
             </div>

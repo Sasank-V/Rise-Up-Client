@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "@/components/loading";
 import LearnerProfilePage from "@/components/profiles/learner-profile";
 import MentorProfilePage from "@/components/profiles/mentor-profile";
-import OrganizationProfilePage from "@/components/profiles/organisation-profile";
+import OrganisationProfilePage from "@/components/profiles/organisation-profile";
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -28,7 +28,7 @@ export default function Dashboard() {
     <div>
       {role === "learner" && <LearnerProfilePage />}
       {role === "mentor" && <MentorProfilePage />}
-      {role === "organization" && <OrganizationProfilePage />}
+      {role === "organisation" && <OrganisationProfilePage />}
     </div>
   );
 }

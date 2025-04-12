@@ -27,8 +27,8 @@ export const organizationNav = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Courses", href: "/courses" },
   { name: "Jobs", href: "/jobs" },
+  { name: "Applications", href: "/application" },
   { name: "Mentorship", href: "/mentorship" },
-  { name: "Community", href: "/community" },
 ];
 
 export const languages = [

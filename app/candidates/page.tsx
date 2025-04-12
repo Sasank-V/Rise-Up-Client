@@ -175,7 +175,7 @@ export default function CandidatesPage() {
         <div>
           <h1 className="text-3xl font-bold">Candidates</h1>
           <p className="text-muted-foreground mt-1">
-            Browse and manage potential candidates for your organization
+            Browse and manage potential candidates for your organisation
           </p>
         </div>
         <div className="flex gap-2">
@@ -489,7 +489,7 @@ export default function CandidatesPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/candidates/${candidate.id}`}
+                                  href={`/organisation/candidates/${candidate.id}`}
                                 >
                                   View Profile
                                 </Link>

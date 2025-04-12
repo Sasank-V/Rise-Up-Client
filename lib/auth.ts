@@ -43,37 +43,46 @@ export const authConfig: NextAuthOptions = {
         if (role) {
           token.role = role;
         } else {
-          token.role = "learner"; // fallback
+          token.role = "learner";
         }
       }
       return token;
     },
     async session({ session, token }) {
-      console.log("Token: ", token);
       if (session.user) {
         session.user.id = token.sub as string;
-        session.user.role = token.role;
+        session.user.role = token.role as string;
       }
+      console.log("Session: ", session);
       return session;
     },
     async signIn({ account, user }) {
       if (!account) return false;
-      //   await fetch("http://localhost:8080/api/signin", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       google_id: user.id,
-      //       email: user.email,
-      //       name: user.name,
-      //       image: user.image,
-      //       access_token: account.access_token,
-      //       refresh_token: account.refresh_token,
-      //       expires_at: account.expires_at,
-      //       categories: defaultCategories,
-      //     }),
-      //   });
+
+      const cookieHeader = (await headers()).get("cookie") ?? "";
+      const roleMatch = cookieHeader.match(/user-role=([^;]*)/);
+      const role = roleMatch?.[1] ?? "learner";
+      user.role = role;
+
+      console.log(user.role);
+      const res = await fetch("http://localhost:8080/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          google_id: user.id,
+          name: user.name,
+          email: user.email,
+          picture: user.image,
+          role: user.role,
+          access_token: account.access_token,
+          refresh_token: account.refresh_token,
+          expires_at: account.expires_at + "",
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
       return true;
     },
   },

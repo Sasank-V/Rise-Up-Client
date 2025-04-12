@@ -1,9 +1,13 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CourseCard } from "@/components/course-card";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, Plus } from "lucide-react";
 import { MotionDiv } from "@/components/motion-div";
+import Link from "next/link";
 
 // Mock data
 const courses = [
@@ -11,7 +15,7 @@ const courses = [
     id: "1",
     title: "Web Development Fundamentals",
     description: "Learn HTML, CSS, and JavaScript basics",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "8 weeks",
     level: "Beginner",
   },
@@ -19,7 +23,7 @@ const courses = [
     id: "2",
     title: "Digital Marketing Essentials",
     description: "Master social media, SEO, and content marketing",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "6 weeks",
     level: "Intermediate",
   },
@@ -27,7 +31,7 @@ const courses = [
     id: "3",
     title: "Data Analysis with Python",
     description: "Learn to analyze and visualize data using Python",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "10 weeks",
     level: "Advanced",
   },
@@ -35,7 +39,7 @@ const courses = [
     id: "4",
     title: "Graphic Design for Beginners",
     description: "Master the fundamentals of visual design",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "5 weeks",
     level: "Beginner",
   },
@@ -43,7 +47,7 @@ const courses = [
     id: "5",
     title: "Business Communication Skills",
     description: "Improve your professional communication",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "4 weeks",
     level: "Intermediate",
   },
@@ -51,13 +55,16 @@ const courses = [
     id: "6",
     title: "Mobile App Development",
     description: "Build iOS and Android apps with React Native",
-    image: "https://picsum.photos/150/250",
+    image: "/placeholder.svg?height=150&width=250",
     duration: "12 weeks",
     level: "Advanced",
   },
 ];
 
 export default function LearningPage() {
+  const { data: session } = useSession();
+  const isOrganisation = session?.user?.role === "organisation";
+
   return (
     <div className="p-5 py-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
@@ -80,6 +87,14 @@ export default function LearningPage() {
             <Filter className="h-4 w-4" />
             <span className="sr-only">Filter</span>
           </Button>
+          {isOrganisation && (
+            <Button asChild>
+              <Link href="/courses/create">
+                <Plus className="h-4 w-4 mr-2" />
+                Create Course
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
 

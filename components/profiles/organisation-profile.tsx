@@ -27,7 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function OrganizationProfilePage() {
+export default function OrganisationProfilePage() {
   const [industries, setIndustries] = useState([
     "Technology",
     "Education",
@@ -80,13 +80,13 @@ export default function OrganizationProfilePage() {
   const handleSaveProfile = () => {
     // toast({
     //   title: "Profile Updated",
-    //   description: "Your organization profile has been successfully updated.",
+    //   description: "Your Organisation profile has been successfully updated.",
     // });
   };
 
   return (
     <div className="p-5 py-8">
-      <h1 className="text-3xl font-bold mb-6">Organization Profile</h1>
+      <h1 className="text-3xl font-bold mb-6">Organisation Profile</h1>
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-1 space-y-6">
@@ -101,14 +101,14 @@ export default function OrganizationProfilePage() {
                   <Avatar className="h-24 w-24">
                     <AvatarImage
                       src="https://picsum.photos/96"
-                      alt="Organization Logo"
+                      alt="Organisation Logo"
                     />
                     <AvatarFallback>GR</AvatarFallback>
                   </Avatar>
                   <div className="text-center">
                     <h2 className="text-xl font-bold">Global Reach NGO</h2>
                     <p className="text-muted-foreground">
-                      Non-profit Organization
+                      Non-profit Organisation
                     </p>
                   </div>
                   <Button variant="outline" size="sm">
@@ -130,7 +130,7 @@ export default function OrganizationProfilePage() {
                     ></div>
                   </div>
                   <p className="text-xs text-muted-foreground text-center">
-                    Complete your organization profile to attract more talent.
+                    Complete your Organisation profile to attract more talent.
                   </p>
                 </div>
               </CardContent>
@@ -208,35 +208,35 @@ export default function OrganizationProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Tabs defaultValue="organization" className="space-y-4">
+            <Tabs defaultValue="Organisation" className="space-y-4">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="organization">
-                  Organization Info
+                <TabsTrigger value="Organisation">
+                  Organisation Info
                 </TabsTrigger>
                 <TabsTrigger value="team">Team Members</TabsTrigger>
                 <TabsTrigger value="opportunities">Opportunities</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="organization" className="space-y-4">
+              <TabsContent value="Organisation" className="space-y-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Organization Information</CardTitle>
+                    <CardTitle>Organisation Information</CardTitle>
                     <CardDescription>
-                      Update your organization&apos;s details and contact
+                      Update your Organisation&apos;s details and contact
                       information.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="org-name">Organization Name</Label>
+                      <Label htmlFor="org-name">Organisation Name</Label>
                       <Input id="org-name" defaultValue="Global Reach NGO" />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="org-type">Organization Type</Label>
+                      <Label htmlFor="org-type">Organisation Type</Label>
                       <Select defaultValue="non-profit">
                         <SelectTrigger id="org-type">
-                          <SelectValue placeholder="Select organization type" />
+                          <SelectValue placeholder="Select Organisation type" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="non-profit">Non-profit</SelectItem>
@@ -253,10 +253,10 @@ export default function OrganizationProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="org-size">Organization Size</Label>
+                      <Label htmlFor="org-size">Organisation Size</Label>
                       <Select defaultValue="50-200">
                         <SelectTrigger id="org-size">
-                          <SelectValue placeholder="Select organization size" />
+                          <SelectValue placeholder="Select Organisation size" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="1-10">1-10 employees</SelectItem>
@@ -316,9 +316,9 @@ export default function OrganizationProfilePage() {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Organization Profile</CardTitle>
+                    <CardTitle>Organisation Profile</CardTitle>
                     <CardDescription>
-                      Tell potential candidates about your organization.
+                      Tell potential candidates about your Organisation.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -333,11 +333,11 @@ export default function OrganizationProfilePage() {
 
                     <div className="space-y-2">
                       <Label htmlFor="description">
-                        About the Organization
+                        About the Organisation
                       </Label>
                       <Textarea
                         id="description"
-                        defaultValue="Global Reach NGO is a non-profit organization dedicated to bridging the opportunity gap for underserved communities worldwide. Founded in 2005, we've helped over 10,000 young people gain access to education and employment opportunities through our various programs and partnerships with local and international businesses."
+                        defaultValue="Global Reach NGO is a non-profit Organisation dedicated to bridging the opportunity gap for underserved communities worldwide. Founded in 2005, we've helped over 10,000 young people gain access to education and employment opportunities through our various programs and partnerships with local and international businesses."
                         className="min-h-[150px]"
                       />
                     </div>
@@ -387,7 +387,7 @@ export default function OrganizationProfilePage() {
                     <CardTitle>Team Members</CardTitle>
                     <CardDescription>
                       Add team members who can access and manage your
-                      organization&apos;s account.
+                      Organisation&apos;s account.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">

@@ -125,11 +125,11 @@ export default function CoursesPage() {
         <div>
           <h1 className="text-3xl font-bold">Courses</h1>
           <p className="text-muted-foreground mt-1">
-            Manage your organization&apos;s courses and track student progress
+            Manage your organisation&apos;s courses and track student progress
           </p>
         </div>
         <Button asChild>
-          <Link href="/organization/courses/create">
+          <Link href="/organisation/courses/create">
             <Plus className="mr-2 h-4 w-4" />
             Create Course
           </Link>
@@ -217,7 +217,7 @@ export default function CoursesPage() {
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="font-bold text-lg">
                             <Link
-                              href={`/organization/courses/${course.id}`}
+                              href={`/organisation/courses/${course.id}`}
                               className="hover:underline"
                             >
                               {course.title}
@@ -237,21 +237,21 @@ export default function CoursesPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}`}
+                                  href={`/organisation/courses/${course.id}`}
                                 >
                                   View Details
                                 </Link>
                               </DropdownMenuItem>
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}/edit`}
+                                  href={`/organisation/courses/${course.id}/edit`}
                                 >
                                   Edit Course
                                 </Link>
                               </DropdownMenuItem>
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}/analytics`}
+                                  href={`/organisation/courses/${course.id}/analytics`}
                                 >
                                   View Analytics
                                 </Link>
@@ -287,7 +287,7 @@ export default function CoursesPage() {
 
                       <div className="flex gap-2 mt-4">
                         <Button asChild size="sm" className="flex-1">
-                          <Link href={`/organization/courses/${course.id}`}>
+                          <Link href={`/organisation/courses/${course.id}`}>
                             Manage
                           </Link>
                         </Button>
@@ -298,7 +298,7 @@ export default function CoursesPage() {
                           className="flex-1"
                         >
                           <Link
-                            href={`/organization/courses/${course.id}/analytics`}
+                            href={`/organisation/courses/${course.id}/analytics`}
                           >
                             Analytics
                           </Link>
@@ -339,7 +339,7 @@ export default function CoursesPage() {
                             </div>
                             <div>
                               <Link
-                                href={`/organization/courses/${course.id}`}
+                                href={`/organisation/courses/${course.id}`}
                                 className="font-medium hover:underline"
                               >
                                 {course.title}
@@ -392,21 +392,21 @@ export default function CoursesPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}`}
+                                  href={`/organisation/courses/${course.id}`}
                                 >
                                   View Details
                                 </Link>
                               </DropdownMenuItem>
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}/edit`}
+                                  href={`/organisation/courses/${course.id}/edit`}
                                 >
                                   Edit Course
                                 </Link>
                               </DropdownMenuItem>
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/organization/courses/${course.id}/analytics`}
+                                  href={`/organisation/courses/${course.id}/analytics`}
                                 >
                                   View Analytics
                                 </Link>

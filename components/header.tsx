@@ -35,7 +35,7 @@ export function Header() {
           return setNavItems(learnerNav);
         case "mentor":
           return setNavItems(mentorNav);
-        case "organization":
+        case "organisation":
           return setNavItems(organizationNav);
         default:
           return setNavItems(navigation);
