@@ -100,7 +100,7 @@ export default function LoginPage() {
                   htmlFor="organisation"
                   className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                 >
-                  <span className="text-base font-medium">organisation</span>
+                  <span className="text-base font-medium">Organisation</span>
                   <span className="text-sm text-muted-foreground">
                     Post courses and jobs
                   </span>

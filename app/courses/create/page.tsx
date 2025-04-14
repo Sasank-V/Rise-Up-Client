@@ -1,8 +1,6 @@
 "use client";
 
-import type React from "react";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,16 +23,51 @@ import {
 import { Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 
+// Import types for the course creation request.
+import { useSession } from "next-auth/react";
+import useProtectedRoute from "@/hooks/use-protected-route";
+import { toast } from "react-toastify";
+
 export default function CreateCoursePage() {
+  useProtectedRoute(["organisation"]);
+  const { data: session, status } = useSession();
+  const [userID, setUserID] = useState("");
+  const [banner, setBanner] = useState("");
+  const [courseTitle, setCourseTitle] = useState("");
+  const [courseDescription, setCourseDescription] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [duration, setDuration] = useState(0); // e.g., total weeks or hours
+  const [skills, setSkills] = useState<string[]>([]);
+  const [instructors, setInstructors] = useState<string[]>([]);
+  const [prerequisites, setPrerequisites] = useState("");
+  const [outcomes, setOutcomes] = useState("");
+
+  useEffect(() => {
+    if (session && session.user) {
+      setUserID(session.user.id);
+    }
+  }, [session, status]);
+
+  // Modules state for course content
   const [modules, setModules] = useState([
     {
       id: 1,
       title: "",
       description: "",
-      lessons: [{ id: 1, title: "", description: "", duration: "" }],
+      lessons: [
+        {
+          id: 1,
+          title: "",
+          description: "",
+          duration: "",
+          contentLink: "",
+          contentType: "",
+        },
+      ],
     },
   ]);
 
+  // Module functions (add, remove, update)
   const addModule = () => {
     const newId =
       modules.length > 0 ? Math.max(...modules.map((m) => m.id)) + 1 : 1;
@@ -44,7 +77,16 @@ export default function CreateCoursePage() {
         id: newId,
         title: "",
         description: "",
-        lessons: [{ id: 1, title: "", description: "", duration: "" }],
+        lessons: [
+          {
+            id: 1,
+            title: "",
+            description: "",
+            duration: "",
+            contentLink: "",
+            contentType: "",
+          },
+        ],
       },
     ]);
   };
@@ -53,6 +95,18 @@ export default function CreateCoursePage() {
     setModules(modules.filter((m) => m.id !== moduleId));
   };
 
+  const updateModule = (moduleId: number, field: string, value: string) => {
+    setModules(
+      modules.map((module) => {
+        if (module.id === moduleId) {
+          return { ...module, [field]: value };
+        }
+        return module;
+      })
+    );
+  };
+
+  // Lesson functions (add, remove, update)
   const addLesson = (moduleId: number) => {
     setModules(
       modules.map((module) => {
@@ -65,7 +119,14 @@ export default function CreateCoursePage() {
             ...module,
             lessons: [
               ...module.lessons,
-              { id: newLessonId, title: "", description: "", duration: "" },
+              {
+                id: newLessonId,
+                title: "",
+                description: "",
+                duration: "",
+                contentLink: "",
+                contentType: "",
+              },
             ],
           };
         }
@@ -82,17 +143,6 @@ export default function CreateCoursePage() {
             ...module,
             lessons: module.lessons.filter((lesson) => lesson.id !== lessonId),
           };
-        }
-        return module;
-      })
-    );
-  };
-
-  const updateModule = (moduleId: number, field: string, value: string) => {
-    setModules(
-      modules.map((module) => {
-        if (module.id === moduleId) {
-          return { ...module, [field]: value };
         }
         return module;
       })
@@ -123,13 +173,67 @@ export default function CreateCoursePage() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this data to your backend
-    // toast({
-    //   title: "Course created",
-    //   description: "Your course has been created successfully.",
-    // });
+
+    // Build CreateCourseRequest object from state
+    const createCourseRequest = {
+      user_id: userID,
+      banner,
+      title: courseTitle,
+      description: courseDescription,
+      difficulty,
+      duration,
+      skills,
+      instructors,
+      prerequisites,
+      outcomes,
+      modules: modules.map((m) => {
+        const moduleData = {
+          title: m.title,
+          order_no: m.id, // Use module's id as the order number
+          lessons: m.lessons.map((l) => {
+            const lessonData = {
+              title: l.title,
+              description: l.description,
+              content_link: l.contentLink,
+              content_type: l.contentType,
+              resources: [], // If there are resources, map them here as []CreateResource
+              duration: parseInt(l.duration, 10),
+              order_no: l.id, // Use lesson's id as the order number
+            };
+            return lessonData;
+          }),
+        };
+        return moduleData;
+      }),
+    };
+
+    // Send the POST request to /api/course/create
+    try {
+      const res = await fetch(
+        `${
+          process.env.SERVER_URL || "http://localhost:8080"
+        }/api/course/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(createCourseRequest),
+        }
+      );
+
+      if (!res.ok) {
+        console.error("Course creation failed:", await res.text());
+        return;
+      }
+
+      const data = await res.json();
+      console.log("Course created successfully:", data);
+      toast("Course Created Successfully");
+    } catch (error) {
+      console.error("Error sending course creation request:", error);
+    }
   };
 
   return (
@@ -144,11 +248,12 @@ export default function CreateCoursePage() {
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="basic" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="basic">Basic Information</TabsTrigger>
-            <TabsTrigger value="content">Course Content</TabsTrigger>
+            <TabsTrigger value="basic">Basic</TabsTrigger>
+            <TabsTrigger value="content">Content</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
+          {/* Basic Information Tab */}
           <TabsContent value="basic" className="space-y-6">
             <Card>
               <CardHeader>
@@ -164,6 +269,8 @@ export default function CreateCoursePage() {
                     id="title"
                     placeholder="e.g., Advanced JavaScript Concepts"
                     required
+                    value={courseTitle}
+                    onChange={(e) => setCourseTitle(e.target.value)}
                   />
                 </div>
 
@@ -174,13 +281,26 @@ export default function CreateCoursePage() {
                     placeholder="Provide a detailed description of your course..."
                     className="min-h-[100px]"
                     required
+                    value={courseDescription}
+                    onChange={(e) => setCourseDescription(e.target.value)}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="banner">Banner URL</Label>
+                  <Input
+                    id="banner"
+                    placeholder="https://example.com/banner.jpg"
+                    required
+                    value={banner}
+                    onChange={(e) => setBanner(e.target.value)}
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="level">Difficulty Level</Label>
-                    <Select>
+                    <Select onValueChange={(diff) => setDifficulty(diff)}>
                       <SelectTrigger id="level">
                         <SelectValue placeholder="Select level" />
                       </SelectTrigger>
@@ -192,23 +312,59 @@ export default function CreateCoursePage() {
                         <SelectItem value="advanced">Advanced</SelectItem>
                       </SelectContent>
                     </Select>
+                    {/* In a real implementation, update the `difficulty` state using a onValueChange handler */}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="duration">Estimated Duration</Label>
-                    <Select>
-                      <SelectTrigger id="duration">
-                        <SelectValue placeholder="Select duration" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-2">1-2 weeks</SelectItem>
-                        <SelectItem value="3-4">3-4 weeks</SelectItem>
-                        <SelectItem value="5-6">5-6 weeks</SelectItem>
-                        <SelectItem value="7-8">7-8 weeks</SelectItem>
-                        <SelectItem value="9+">9+ weeks</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="duration">
+                      Estimated Duration (in weeks)
+                    </Label>
+                    <Input
+                      id="duration"
+                      type="number"
+                      required
+                      value={duration.toString()}
+                      onChange={(e) =>
+                        setDuration(parseInt(e.target.value, 10))
+                      }
+                    />
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="skills">Skills (comma-separated)</Label>
+                  <Input
+                    id="skills"
+                    placeholder="e.g., JavaScript, React, Node.js"
+                    value={skills.join(", ")}
+                    onChange={(e) =>
+                      setSkills(
+                        e.target.value
+                          .split(",")
+                          .map((s) => s.trim())
+                          .filter(Boolean)
+                      )
+                    }
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="instructors">
+                    Instructors (comma-separated)
+                  </Label>
+                  <Input
+                    id="instructors"
+                    placeholder="e.g., Alice, Bob"
+                    value={instructors.join(", ")}
+                    onChange={(e) =>
+                      setInstructors(
+                        e.target.value
+                          .split(",")
+                          .map((s) => s.trim())
+                          .filter(Boolean)
+                      )
+                    }
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -217,6 +373,8 @@ export default function CreateCoursePage() {
                     id="prerequisites"
                     placeholder="List any prerequisites for this course..."
                     className="min-h-[80px]"
+                    value={prerequisites}
+                    onChange={(e) => setPrerequisites(e.target.value)}
                   />
                 </div>
 
@@ -226,12 +384,15 @@ export default function CreateCoursePage() {
                     id="outcomes"
                     placeholder="What will students learn from this course?"
                     className="min-h-[80px]"
+                    value={outcomes}
+                    onChange={(e) => setOutcomes(e.target.value)}
                   />
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
+          {/* Course Content Tab */}
           <TabsContent value="content" className="space-y-6">
             <Card>
               <CardHeader>
@@ -370,10 +531,11 @@ export default function CreateCoursePage() {
                             <Label
                               htmlFor={`lesson-${module.id}-${lesson.id}-duration`}
                             >
-                              Duration
+                              Duration (minutes)
                             </Label>
                             <Input
                               id={`lesson-${module.id}-${lesson.id}-duration`}
+                              type="number"
                               value={lesson.duration}
                               onChange={(e) =>
                                 updateLesson(
@@ -383,7 +545,8 @@ export default function CreateCoursePage() {
                                   e.target.value
                                 )
                               }
-                              placeholder="e.g., 30 minutes"
+                              placeholder="e.g., 30"
+                              required
                             />
                           </div>
                         </div>
@@ -411,6 +574,7 @@ export default function CreateCoursePage() {
             </Card>
           </TabsContent>
 
+          {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <Card>
               <CardHeader>
